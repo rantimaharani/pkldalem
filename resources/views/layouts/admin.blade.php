@@ -60,7 +60,7 @@
 		============================================ -->
     <script src="{{ asset('assets/template/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 </head>
-<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{asset('assets/DataTables/datatables.min.css')}}"/>
 
 <body>
     <!--[if lt IE 8]>
@@ -1495,7 +1495,7 @@
     <!-- main JS
 		============================================ -->
     <script src="{{ asset('assets/template/js/main.js')}}"></script>
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+    <script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script>
     <script>
     $(document).ready(function() {
     $('#datatable').DataTable();

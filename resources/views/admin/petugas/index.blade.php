@@ -1,41 +1,52 @@
 @extends('layouts.admin')
-
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
+<section class="page-content container-fluid">
+    <div class="row">
+        <div class="col-12">
             <div class="card">
-                    <br>
-                    <center> <div class="card-header"><h2> Petugas </h2> </div> </center>
-                    <br>
-                <center><a href="{{ route('petugas.create') }}" class="btn btn-primary"> Tambah </a></center>
-                <br>
-                    <div class="table-responsive">
-                        <table class="table">
-                        <tr> 
-                            <th> No </th>
-                            <th> Nama Petugas </th>
-                            <th colspan="3" style="text-align: center;"> Aksi </th>
-                        </tr>
-                        @php $no = 1; @endphp
-                        @foreach ($petugas as $data)
+
+                <h5 class="card-header">Data Petugas</h5><br>
+                <center>
+                        <a href="{{ route('petugas.create') }}"
+                            class="la la-cloud-upload btn btn-info btn-rfur if you know that im lonelyfur if you know that im lonelyounded btn-floating btn-outline">&nbsp;Tambah Data
+                        </a>
+                </center>
+                <div class="card-body">
+                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
                             <tr>
-                            <td>{{$no++}}</td>
-                            <td>{{$data->petugas_nama}}</td>
-                            <td><a href="{{ route('petugas.show',$data->id) }}" class="btn btn-warning"> Show </a></td>
-                            <td><a href="{{ route('petugas.edit',$data->id) }}"class="btn btn-success"> Edit </a></td>
-                            <td><form action="{{ route('petugas.destroy',$data->id) }}" method="POST">
-                                
-                                {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-danger" type="submit"> Hapus </button>
-                            </form>
-                            </td>
+                                <th>Id</th>
+                                <th>Nama Petugas </th>
+                                <th style="text-align: center;">Aksi</th>
                             </tr>
-                        @endforeach
+                        </thead>
+                        <tbody>
+                        @php $no = 1; @endphp
+                            @foreach ($petugas as $data)
+                            <tr>
+                            <td>{{ $no++ }}</td>
+                                <td>{{ $data->petugas_nama }}</td>
+
+                                 <td style="text-align: center;">
+                                    <form action="{{route('petugas.destroy', $data->id)}}" method="post">
+                                        {{csrf_field()}}
+                                    <a href="{{route('petugas.edit', $data->id)}}"
+                                        class="zmdi zmdi-edit btn btn-warning btn-rounded btn-floating btn-outline"> Edit
+                                    </a>
+                                    <a href="{{route('petugas.show', $data->id) }}"
+                                        class="zmdi zmdi-eye btn btn-success btn-rounded btn-floating btn-outline"> Show
+                                    </a>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="zmdi zmdi-delete btn-rounded btn-floating btn btn-dangerbtn btn-danger btn-outline"> Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+</section>
 @endsection
